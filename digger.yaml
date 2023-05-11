@@ -1,14 +1,3 @@
 projects:
 - name: dev
   dir: .
-  workspace: default
-  workflow: dev
-workflows:
-  dev:
-    env_vars:
-      state:
-      - name: AWS_PROFILE
-        value: tf-state
-      commands:
-      - name: AWS_PROFILE
-        value: tf-infra
