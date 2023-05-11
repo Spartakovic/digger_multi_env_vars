@@ -1,8 +1,8 @@
 terraform {
   backend "s3" {
     key = "terraform.tfstate"
-    bucket = "digger-state-poc"
-    region = "eu-central-1"
+    bucket = "dias-test-terraform-state"
+    region = "us-east-1"
   }
   required_providers {
     aws = {
