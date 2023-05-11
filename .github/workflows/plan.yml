@@ -14,15 +14,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Add profile credentials to ~/.aws/credentials 
+        run: |
+          aws configure set aws_access_key_id ${{ secrets.TF_STATE_ACCESS_KEY_ID }} --profile tf-state
+          aws configure set aws_secret_access_key ${{ secrets.TF_STATE_SECRET_ACCESS_KEY }} --profile tf-state
+          aws configure set region us-east-1 --profile tf-state
+          aws configure set aws_access_key_id ${{ secrets.DEV_AWS_ACCESS_KEY_ID }} --profile tf-infra
+          aws configure set aws_secret_access_key ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }} --profile tf-infra
+          aws configure set region us-east-1 --profile tf-infra
       - name: digger tfrun
         uses: diggerhq/digger@test/check
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TF_STATE_ACCESS_KEY_ID: ${{ secrets.TF_STATE_ACCESS_KEY_ID }}
-          TF_STATE_SECRET_ACCESS_KEY: ${{ secrets.TF_STATE_SECRET_ACCESS_KEY }}
-          DEV_AWS_ACCESS_KEY_ID: ${{ secrets.DEV_AWS_ACCESS_KEY_ID }}
-          DEV_AWS_SECRET_ACCESS_KEY: ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }}
           DIGGER_AWS_ACCESS_KEY_ID: ${{ secrets.TF_STATE_ACCESS_KEY_ID }}
           DIGGER_AWS_SECRET_ACCESS_KEY: ${{ secrets.TF_STATE_SECRET_ACCESS_KEY }}
-          AWS_REGION: us-east-1
