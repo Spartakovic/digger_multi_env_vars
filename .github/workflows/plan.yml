@@ -25,4 +25,4 @@ jobs:
           DEV_AWS_SECRET_ACCESS_KEY: ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }}
           DIGGER_AWS_ACCESS_KEY_ID: ${{ secrets.TF_STATE_ACCESS_KEY_ID }}
           DIGGER_AWS_SECRET_ACCESS_KEY: ${{ secrets.TF_STATE_SECRET_ACCESS_KEY }}
-          AWS_REGION: eu-central-1
+          AWS_REGION: us-east-1
