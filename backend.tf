@@ -3,6 +3,7 @@ terraform {
     key = "terraform.tfstate"
     bucket = "dias-test-terraform-state"
     region = "us-east-1"
+    profile = "tf-state"
   }
   required_providers {
     aws = {
@@ -14,4 +15,5 @@ terraform {
 
 provider "aws" {
   region = "eu-central-1"
+  profile = "tf-infra"
 }
